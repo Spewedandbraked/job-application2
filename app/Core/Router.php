@@ -2,11 +2,12 @@
 
 namespace App\Core;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class Router
 {
     protected $routes = [];
-    protected $params = [];
-
+    
     public function add($route, $controller, $action, $method = 'GET')
     {
         $this->routes[] = [
@@ -17,18 +18,19 @@ class Router
         ];
     }
 
-    public function dispatch($uri)
+    public function dispatch(Request $request) 
     {
-        $method = $_SERVER['REQUEST_METHOD'];
+        $uri = $request->getPathInfo(); 
+        $method = $request->getMethod(); 
 
         foreach ($this->routes as $route) {
-            // todo: почитать, что такое "регулярки" в роутере
             if ($route['route'] === $uri && $route['method'] === $method) {
                 $controllerClass = $route['controller'];
                 $action = $route['action'];
 
                 if (class_exists($controllerClass)) {
-                    $controller = new $controllerClass();
+                    $controller = new $controllerClass($request);
+                    
                     if (method_exists($controller, $action)) {
                         return $controller->$action();
                     }
@@ -36,7 +38,6 @@ class Router
             }
         }
 
-        // 404
         $this->notFound();
     }
 

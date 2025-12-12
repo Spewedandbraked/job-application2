@@ -2,8 +2,7 @@
 
 namespace App\Core;
 
-use App\Controllers\HomeController;
-use App\Core\Router;
+use Symfony\Component\HttpFoundation\Request;
 
 class App
 {
@@ -17,16 +16,12 @@ class App
 
     protected function loadRoutes()
     {
-        $this->router->add('/', HomeController::class, 'index', 'GET');
+        $this->router->add('/', \App\Controllers\HomeController::class, 'index', 'GET');
+        $this->router->add('/first-task', \App\Controllers\FirstTask::class, 'searchCategory', 'GET');
     }
 
-    public function run()
+    public function handle(Request $request)
     {
-        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-        $uri = rtrim($uri, '/');
-        $uri = $uri ?: '/';
-
-        $this->router->dispatch($uri);
+        return $this->router->dispatch($request);
     }
 }
