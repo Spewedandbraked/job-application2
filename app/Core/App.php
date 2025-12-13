@@ -18,6 +18,8 @@ class App
     {
         $this->router->add('/', \App\Controllers\HomeController::class, 'index', 'GET');
         $this->router->add('/first-task', \App\Controllers\FirstTask::class, 'searchCategory', 'GET');
+        $this->router->add('/second-task', \App\Controllers\SecondTask::class, 'querry', 'GET');
+        $this->router->add('/second-task2', \App\Controllers\SecondTask::class, 'querryBuilder', 'GET');
     }
 
     public function handle(Request $request)
