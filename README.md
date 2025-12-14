@@ -256,9 +256,9 @@ public static function isHtmlStructureValid($tags): bool
 После запуска `docker-compose up -d` будут доступны:
 
 - **MySQL:** `localhost:3306`
-  - Пользователь: `root` (или как указано в `.env`)
-  - Пароль: `secret` (или как указано в `.env`)
-  - База данных: `test_db` (или как указано в `.env`)
+  - Пользователь: `root`
+  - Пароль: `root_password`
+  - База данных: `company_db`
 
 - **PhpMyAdmin:** `http://localhost:8080`
   - Для входа используйте те же учетные данные, что и для MySQL
