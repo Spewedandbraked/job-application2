@@ -4,7 +4,11 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": [
+            "config/database.php",
+            "config/phinx.php"
+        ]
     },
     "authors": [
         {
@@ -16,6 +20,20 @@
         "vlucas/phpdotenv": "^5.6",
         "symfony/var-dumper": "^7.4",
         "symfony/http-foundation": "^7.4",
-        "doctrine/dbal": "^4.4"
+        "doctrine/dbal": "^4.4",
+        "robmorgan/phinx": "^0.16.10"
+    },
+    "scripts": {
+        "migrate": "phinx migrate -c config/phinx.php",
+        "migrate:status": "phinx status -c config/phinx.php",
+        "migrate:create": "phinx create -c config/phinx.php",
+        "migrate:rollback": "phinx rollback -c config/phinx.php",
+        "migrate:seed": "phinx seed:run -c config/phinx.php",
+        "seed": "phinx seed:run -c config/phinx.php",
+        "seed:run": "phinx seed:run -c config/phinx.php",
+        "seed:create": "phinx seed:create -c config/phinx.php",
+        "seed:list": "phinx seed:list -c config/phinx.php",
+        "seed:run --seed=ClassName": "phinx seed:run -c config/phinx.php --seed=ClassName",
+        "seed:run -s ClassName -s AnotherClassName": "phinx seed:run -c config/phinx.php -s ClassName -s AnotherClassName"
     }
 }
