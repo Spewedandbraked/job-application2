@@ -20,6 +20,7 @@ class App
         $this->router->add('/first-task', \App\Controllers\FirstTask::class, 'searchCategory', 'GET');
         $this->router->add('/second-task', \App\Controllers\SecondTask::class, 'querry', 'GET');
         $this->router->add('/second-task2', \App\Controllers\SecondTask::class, 'querryBuilder', 'GET');
+        $this->router->add('/fourth-task', \App\Controllers\FourthTask::class, 'isHtmlStructureValid', 'GET');
     }
 
     public function handle(Request $request)
